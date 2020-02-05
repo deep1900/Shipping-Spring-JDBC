@@ -2,6 +2,7 @@ package com.northwind.shipping.repository;
 
 import com.northwind.shipping.SqlStatements;
 import com.northwind.shipping.model.PackingSlip;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.sql.DataSource;
@@ -101,5 +102,22 @@ public class RepositoryImpl implements Repository {
             packingSlip.setShipCountry(rs.getString("ShipCountry"));
         }
             return packingSlip;
+    }
+
+    @Override
+    public String updatePackingSlips(PackingSlip packingSlip) throws SQLException {
+        Connection conn = null;
+        String SQL = SqlStatements.updateSql;
+        conn = dataSource.getConnection();
+        PreparedStatement ps = conn.prepareStatement(SQL);
+        ps.setLong(1,packingSlip.getId());
+        ps.setString(2,packingSlip.getShipAddress());
+        ps.setString(3,packingSlip.getShipCity());
+        ps.setString(4,packingSlip.getShipCountry());
+        ps.setString(5,packingSlip.getShipPostalCode());
+        ps.setString(6,packingSlip.getShipRegion());
+        ps.setInt(7,packingSlip.getOrderNo());
+        boolean result = ps.execute();
+        return (result = true) ? "Record Updated" : "Record Did not Updated";
     }
 }

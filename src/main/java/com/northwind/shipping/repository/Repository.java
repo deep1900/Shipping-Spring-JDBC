@@ -9,6 +9,6 @@ public interface Repository
 {
     public List<PackingSlip> getPackingSlipDetails() throws SQLException;
     public String deletePackingSlipDetails(long id) throws SQLException;
-
     PackingSlip getPackingSlipById(long id) throws SQLException;
+    public String updatePackingSlips(PackingSlip packingSlip) throws SQLException;
 }

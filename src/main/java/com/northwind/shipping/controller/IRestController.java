@@ -48,4 +48,10 @@ public class IRestController {
             response =  new ResponseEntity<>("SQL Error",HttpStatus.INTERNAL_SERVER_ERROR);
         return response;
     }
+
+    @PutMapping("/update")
+    public ResponseEntity<String> updatePackingDetails(@RequestBody PackingSlip packingSlip) throws SQLException {
+        String s = repository.updatePackingSlips(packingSlip);
+        return new ResponseEntity<>(s,HttpStatus.OK);
+    }
 }

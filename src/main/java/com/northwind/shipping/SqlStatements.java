@@ -21,5 +21,6 @@ public class SqlStatements
            "WHERE PackingSlipID = ?;\n";
 
    public static final String sql3 = "SELECT * FROM `shipping-db`.PackingSlips where PackingSlipID= ?;\n";
+   public static final String updateSql = "UPDATE `shipping-db`.PackingSlips SET PackingSlipID` = ?,OrderID = ?,ShipName = ?,ShipAddress = ?,ShipCity = ?,ShipRegion = ?,ShipPostalCode = ?,ShipCountry = ?,ObjectID = ? WHERE PackingSlipID = ?;\n";
 
 }
