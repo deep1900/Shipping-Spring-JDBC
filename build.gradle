@@ -20,6 +20,10 @@ dependencies {
 
     implementation 'org.springframework:spring-jdbc:5.2.3.RELEASE'
     implementation 'mysql:mysql-connector-java:8.0.19'
+// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.2.4.RELEASE'
+
+
 
     testImplementation 'org.junit.jupiter:junit-jupiter:5.5.2'
 }

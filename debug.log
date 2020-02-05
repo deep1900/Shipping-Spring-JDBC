@@ -1,0 +1,2 @@
+[0205/102811.435:ERROR:crashpad_client_win.cc(381)] OpenProcess: Access is denied. (0x5)
+[0205/102811.729:ERROR:crashpad_client_win.cc(131)] crash server failed to launch, self-terminating
