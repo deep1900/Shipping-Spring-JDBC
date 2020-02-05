@@ -54,20 +54,33 @@ public class RepositoryImpl implements Repository {
     public String deletePackingSlipDetails(@PathVariable long id) throws SQLException {
         Connection conn = null;
         String Sql = sqlStatements.sql2;
+        String sqlToFindPackage = sqlStatements.sql3;
+        String statement;
         conn = dataSource.getConnection();
-        PreparedStatement ps = conn.prepareStatement(Sql);
-        ps.setLong(1, id);
-        boolean rs = ps.execute();
-        String Statement = null;
-        if(rs = true){
-            Statement = "Shipping Detail is Deleted";
+        PreparedStatement ps = conn.prepareStatement(sqlToFindPackage);
+        ps.setLong(1,id);
+        ResultSet resultSet = ps.executeQuery();
+        if(!resultSet.next()){
+            statement = "404";
+            conn.close();
+            return statement;
         }
+
         else{
-            Statement = "Shipping Detail is not Deleted Please Check your Code";
+            PreparedStatement ps1 = conn.prepareStatement(Sql);
+            ps1.setLong(1,id);
+            boolean rs = ps1.execute();
+            if(rs=true){
+                statement = "200";
+            }
+            else{
+                statement="500";
+            }
+            conn.close();
+            return statement;
         }
 
 
-            return Statement;
     }
 
     @Override

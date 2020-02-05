@@ -40,7 +40,12 @@ public class IRestController {
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deletePackingDetails(@PathVariable long id) throws SQLException {
         String s = repository.deletePackingSlipDetails(id);
-        System.out.println(id);
-        return new ResponseEntity<>(s,HttpStatus.OK);
+        ResponseEntity<String> response = null;
+        if(s=="404") response =  new ResponseEntity<>("DATA NOT FOUND", HttpStatus.NOT_FOUND);
+        if(s=="200")
+            return response =  new ResponseEntity<>("DATA IS DELETED" + id + ".", HttpStatus.OK);
+        if (s=="500")
+            response =  new ResponseEntity<>("SQL Error",HttpStatus.INTERNAL_SERVER_ERROR);
+        return response;
     }
 }

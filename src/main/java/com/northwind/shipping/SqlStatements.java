@@ -21,4 +21,5 @@ public class SqlStatements
            "WHERE PackingSlipID = ?;\n";
 
    public static final String sql3 = "SELECT * FROM `shipping-db`.PackingSlips where PackingSlipID= ?;\n";
+
 }
