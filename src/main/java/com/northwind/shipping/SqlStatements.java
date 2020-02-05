@@ -19,4 +19,6 @@ public class SqlStatements
 
    public static final String sql2 = "DELETE FROM `shipping-db`.`PackingSlips`\n" +
            "WHERE PackingSlipID = ?;\n";
+
+   public static final String sql3 = "SELECT * FROM `shipping-db`.PackingSlips where PackingSlipID= ?;\n";
 }

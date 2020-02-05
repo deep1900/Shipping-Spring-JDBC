@@ -31,6 +31,12 @@ public class IRestController {
             return new ResponseEntity<>(list, HttpStatus.OK);
 
     }
+
+    @GetMapping("/getbyId/{id}")
+    public ResponseEntity<PackingSlip> getById(@PathVariable long id) throws SQLException {
+        PackingSlip ps = repository.getPackingSlipById(id);
+        return new ResponseEntity<>(ps, HttpStatus.OK);
+    }
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deletePackingDetails(@PathVariable long id) throws SQLException {
         String s = repository.deletePackingSlipDetails(id);

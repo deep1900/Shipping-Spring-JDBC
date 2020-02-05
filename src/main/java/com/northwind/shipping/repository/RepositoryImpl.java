@@ -2,7 +2,6 @@ package com.northwind.shipping.repository;
 
 import com.northwind.shipping.SqlStatements;
 import com.northwind.shipping.model.PackingSlip;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.sql.DataSource;
@@ -69,5 +68,25 @@ public class RepositoryImpl implements Repository {
 
 
             return Statement;
+    }
+
+    @Override
+    public PackingSlip getPackingSlipById(long id) throws SQLException {
+        Connection conn = null;
+        String sql = SqlStatements.sql3;
+        conn = dataSource.getConnection();
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setLong(1, id);
+        ResultSet rs = ps.executeQuery();
+        PackingSlip  packingSlip = new PackingSlip();
+        while (rs.next()){
+            packingSlip.setId(rs.getInt("PackingSlipID"));
+            packingSlip.setOrderNo(rs.getInt("OrderID"));
+            packingSlip.setShipAddress(rs.getString("ShipAddress"));
+            packingSlip.setShipCity(rs.getString("ShipCity"));
+            packingSlip.setShipPostalCode(rs.getString("ShipPostalCode"));
+            packingSlip.setShipCountry(rs.getString("ShipCountry"));
+        }
+            return packingSlip;
     }
 }

@@ -27,7 +27,6 @@ public class AppConfig
     public DataSource datasource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource.setDriverClassName(env.getProperty("jdbc."));
         dataSource.setUrl("jdbc:mysql://localhost:3306/shipping-db");
         dataSource.setUsername("root");
         dataSource.setPassword("password");
